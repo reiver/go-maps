@@ -8,7 +8,7 @@ import (
 	"testing"
 )
 
-func TestType_Path(t *testing.T) {
+func TestType_PathQuery(t *testing.T) {
 
 	tests := []struct{
 		Path []string
