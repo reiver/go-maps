@@ -24,7 +24,7 @@ func ExamplePathQuery() {
 
 	countryName, found := mapstringinterface.PathQuery(data, "address","country-name")
 	if !found {
-		fmt.Println("The data did now have address/country-name")
+		fmt.Println(`The data did not have an "address/country-name"`)
 		return
 	}
 
