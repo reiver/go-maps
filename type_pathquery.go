@@ -1,8 +1,10 @@
 package maps
 
 func (receiver Type) PathQuery(path ...string) (any, bool) {
+	var empty any
+
 	if nil == receiver {
-		return "", false
+		return empty, false
 	}
 
 	if 1 > len(path) {
@@ -19,7 +21,7 @@ func (receiver Type) PathQuery(path ...string) (any, bool) {
 
 	pointer, found := receiver[name]
 	if !found {
-		return nil, false
+		return empty, false
 	}
 
 	if 1 == len(path) {
@@ -28,7 +30,7 @@ func (receiver Type) PathQuery(path ...string) (any, bool) {
 
 	msi, casted := pointer.(map[string]any)
 	if !casted {
-		return nil, false
+		return empty, false
 	}
 
 	return Type(msi).PathQuery(path[1:]...)
