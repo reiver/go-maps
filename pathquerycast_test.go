@@ -203,6 +203,43 @@ func TestPathQueryCast_string(t *testing.T) {
 
 
 
+		//					
+		// map[any]any
+		{
+			Map: map[string]any{
+				"apple":map[any]any{
+					"banana":"three",
+				},
+			},
+			Path: []string{"apple"},
+			ExpectedFound: false,
+			ExpectedValue: "",
+		},
+		{
+			Map: map[string]any{
+				"apple":map[any]any{
+					"banana":"three",
+				},
+			},
+			Path: []string{"apple","banana"},
+			ExpectedFound: true,
+			ExpectedValue: "three",
+		},
+		{
+			Map: map[string]any{
+				"apple":map[any]any{
+					"banana":"three",
+				},
+			},
+			Path: []string{"apple","banana","cherry"},
+			ExpectedFound: false,
+			ExpectedValue: "",
+		},
+		// map[any]any
+		//					
+
+
+
 		{
 			Map: map[string]any{
 				"apple":map[string]any{
@@ -311,6 +348,49 @@ func TestPathQueryCast_string(t *testing.T) {
 			ExpectedFound: true,
 			ExpectedValue: "four",
 		},
+
+
+
+		//				
+		// map[any]any
+		{
+			Map: map[string]any{
+				"apple":map[any]any{
+					"banana":map[any]any{
+						"cherry":"four",
+					},
+				},
+			},
+			Path: []string{"apple"},
+			ExpectedFound: false,
+			ExpectedValue: "",
+		},
+		{
+			Map: map[string]any{
+				"apple":map[any]any{
+					"banana":map[any]any{
+						"cherry":"four",
+					},
+				},
+			},
+			Path: []string{"apple","banana"},
+			ExpectedFound: false,
+			ExpectedValue: "",
+		},
+		{
+			Map: map[string]any{
+				"apple":map[any]any{
+					"banana":map[any]any{
+						"cherry":"four",
+					},
+				},
+			},
+			Path: []string{"apple","banana","cherry"},
+			ExpectedFound: true,
+			ExpectedValue: "four",
+		},
+		// map[any]any
+		//				
 
 
 

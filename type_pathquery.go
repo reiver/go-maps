@@ -7,14 +7,10 @@ func (receiver Type) PathQuery(path ...string) (any, bool) {
 		return empty, false
 	}
 
-	if 1 > len(path) {
-		var result any = receiver
-		switch casted := result.(type) {
-		case Type:
-			result = map[string]any(casted)
-		}
+	var pathlength int = len(path)
 
-		return result, true
+	if pathlength < 1 {
+		return map[string]any(receiver), true
 	}
 
 	name := path[0]
@@ -24,14 +20,34 @@ func (receiver Type) PathQuery(path ...string) (any, bool) {
 		return empty, false
 	}
 
-	if 1 == len(path) {
+	if 1 == pathlength {
 		return pointer, true
 	}
 
-	msi, casted := pointer.(map[string]any)
+//@TODO: Could this code to turn a map[any]any into a map[string]any be improved? Maybe solve the issue it is solving another way?
+	switch casted := pointer.(type) {
+	case map[any]any:
+		var alt map[string]any = map[string]any{}
+
+		for nameAny, value := range casted {
+			var name string
+			var nameCasted bool
+
+			name, nameCasted = nameAny.(string)
+			if !nameCasted {
+				return empty, false
+			}
+
+			alt[name] = value
+		}
+
+		pointer = alt
+	}
+
+	themap, casted := pointer.(map[string]any)
 	if !casted {
 		return empty, false
 	}
 
-	return Type(msi).PathQuery(path[1:]...)
+	return Type(themap).PathQuery(path[1:]...)
 }
