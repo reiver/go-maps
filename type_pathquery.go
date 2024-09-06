@@ -1,15 +1,15 @@
-package mapstringinterface
+package maps
 
-func (receiver Type) PathQuery(path ...string) (interface{}, bool) {
+func (receiver Type) PathQuery(path ...string) (any, bool) {
 	if nil == receiver {
 		return "", false
 	}
 
 	if 1 > len(path) {
-		var result interface{} = receiver
+		var result any = receiver
 		switch casted := result.(type) {
 		case Type:
-			result = map[string]interface{}(casted)
+			result = map[string]any(casted)
 		}
 
 		return result, true
@@ -26,7 +26,7 @@ func (receiver Type) PathQuery(path ...string) (interface{}, bool) {
 		return pointer, true
 	}
 
-	msi, casted := pointer.(map[string]interface{})
+	msi, casted := pointer.(map[string]any)
 	if !casted {
 		return nil, false
 	}

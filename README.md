@@ -1,10 +1,10 @@
 # go-maps
 
-Package **maps** provides tools for working with Go's `map[string]interface{}` type.
+Package **maps** provides tools for working with the Go programming language's `map[string]any` type.
 
 For example:
 ```go
-var data map[string]interface{}
+var data map[string]any // = ???
 
 // ...
 

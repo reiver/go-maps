@@ -1,19 +1,19 @@
-package mapstringinterface_test
+package maps_test
 
 import (
-	"github.com/reiver/go-mapstringinterface"
+	"github.com/reiver/go-maps"
 
 	"fmt"
 )
 
 func ExamplePathQueryForString() {
 
-	var data map[string]interface{} = map[string]interface{}{
-		"name":map[string]interface{}{
+	var data map[string]any = map[string]any{
+		"name":map[string]any{
 			"given-name":"Joe",
 			"family-name":"Blow",
 		},
-		"address":map[string]interface{}{
+		"address":map[string]any{
 			"country-name":"Canada",
 			"reigion":"Manitoba",
 			"locality":"Portage la Prairie",
@@ -22,7 +22,7 @@ func ExamplePathQueryForString() {
 		},
 	}
 
-	countryName, found := mapstringinterface.PathQueryForString(data, "address","country-name")
+	countryName, found := maps.PathQueryForString(data, "address","country-name")
 	if !found {
 		fmt.Println(`The data did not have an "address/country-name"`)
 		return

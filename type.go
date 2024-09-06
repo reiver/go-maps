@@ -1,3 +1,3 @@
-package mapstringinterface
+package maps
 
-type Type map[string]interface{}
+type Type map[string]any

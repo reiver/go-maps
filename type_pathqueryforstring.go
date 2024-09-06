@@ -1,4 +1,4 @@
-package mapstringinterface
+package maps
 
 import (
 	"github.com/reiver/go-cast"

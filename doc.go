@@ -1,4 +1,4 @@
 /*
-Package mapstringinterface provides tools for working with Go's map[string]interface{} type.
+Package maps provides tools for working with Go's map[string]any type.
 */
-package mapstringinterface
+package maps

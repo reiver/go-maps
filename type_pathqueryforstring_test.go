@@ -1,7 +1,7 @@
-package mapstringinterface_test
+package maps_test
 
 import (
-	"github.com/reiver/go-mapstringinterface"
+	"github.com/reiver/go-maps"
 
 	"reflect"
 
@@ -12,31 +12,31 @@ func TestType_PathQueryForString(t *testing.T) {
 
 	tests := []struct{
 		Path []string
-		Map map[string]interface{}
-		Expected interface{}
+		Map map[string]any
+		Expected any
 		ExpectedFound bool
 	}{
 		{
 			Path: []string{},
-			Map:      map[string]interface{}{},
+			Map:      map[string]any{},
 			Expected: "",
 			ExpectedFound: false,
 		},
 		{
 			Path: []string{},
-			Map:      map[string]interface{}{"one":"apple"},
+			Map:      map[string]any{"one":"apple"},
 			Expected: "",
 			ExpectedFound: false,
 		},
 		{
 			Path: []string{},
-			Map:      map[string]interface{}{"one":"apple","two":"banana"},
+			Map:      map[string]any{"one":"apple","two":"banana"},
 			Expected: "",
 			ExpectedFound: false,
 		},
 		{
 			Path: []string{},
-			Map:      map[string]interface{}{"one":"apple","two":"banana","three":"cherry"},
+			Map:      map[string]any{"one":"apple","two":"banana","three":"cherry"},
 			Expected: "",
 			ExpectedFound: false,
 		},
@@ -45,13 +45,13 @@ func TestType_PathQueryForString(t *testing.T) {
 
 		{
 			Path: []string{},
-			Map:map[string]interface{}{
-				"one":map[string]interface{}{
-					"two":map[string]interface{}{
+			Map:map[string]any{
+				"one":map[string]any{
+					"two":map[string]any{
 						"three": "hello world!",
 					},
-					"TWO":map[string]interface{}{
-						"THREE":map[string]interface{}{
+					"TWO":map[string]any{
+						"THREE":map[string]any{
 							"FOUR":"All your base are belong to us",
 						},
 					},
@@ -65,13 +65,13 @@ func TestType_PathQueryForString(t *testing.T) {
 		},
 		{
 			Path: []string{"waldo"},
-			Map:map[string]interface{}{
-				"one":map[string]interface{}{
-					"two":map[string]interface{}{
+			Map:map[string]any{
+				"one":map[string]any{
+					"two":map[string]any{
 						"three": "hello world!",
 					},
-					"TWO":map[string]interface{}{
-						"THREE":map[string]interface{}{
+					"TWO":map[string]any{
+						"THREE":map[string]any{
 							"FOUR":"All your base are belong to us",
 						},
 					},
@@ -85,13 +85,13 @@ func TestType_PathQueryForString(t *testing.T) {
 		},
 		{
 			Path: []string{"apple"},
-			Map:map[string]interface{}{
-				"one":map[string]interface{}{
-					"two":map[string]interface{}{
+			Map:map[string]any{
+				"one":map[string]any{
+					"two":map[string]any{
 						"three": "hello world!",
 					},
-					"TWO":map[string]interface{}{
-						"THREE":map[string]interface{}{
+					"TWO":map[string]any{
+						"THREE":map[string]any{
 							"FOUR":"All your base are belong to us",
 						},
 					},
@@ -105,13 +105,13 @@ func TestType_PathQueryForString(t *testing.T) {
 		},
 		{
 			Path: []string{"banana"},
-			Map:map[string]interface{}{
-				"one":map[string]interface{}{
-					"two":map[string]interface{}{
+			Map:map[string]any{
+				"one":map[string]any{
+					"two":map[string]any{
 						"three": "hello world!",
 					},
-					"TWO":map[string]interface{}{
-						"THREE":map[string]interface{}{
+					"TWO":map[string]any{
+						"THREE":map[string]any{
 							"FOUR":"All your base are belong to us",
 						},
 					},
@@ -125,13 +125,13 @@ func TestType_PathQueryForString(t *testing.T) {
 		},
 		{
 			Path: []string{"cherry"},
-			Map:map[string]interface{}{
-				"one":map[string]interface{}{
-					"two":map[string]interface{}{
+			Map:map[string]any{
+				"one":map[string]any{
+					"two":map[string]any{
 						"three": "hello world!",
 					},
-					"TWO":map[string]interface{}{
-						"THREE":map[string]interface{}{
+					"TWO":map[string]any{
+						"THREE":map[string]any{
 							"FOUR":"All your base are belong to us",
 						},
 					},
@@ -145,13 +145,13 @@ func TestType_PathQueryForString(t *testing.T) {
 		},
 		{
 			Path: []string{"one"},
-			Map:map[string]interface{}{
-				"one":map[string]interface{}{
-					"two":map[string]interface{}{
+			Map:map[string]any{
+				"one":map[string]any{
+					"two":map[string]any{
 						"three": "hello world!",
 					},
-					"TWO":map[string]interface{}{
-						"THREE":map[string]interface{}{
+					"TWO":map[string]any{
+						"THREE":map[string]any{
 							"FOUR":"All your base are belong to us",
 						},
 					},
@@ -165,13 +165,13 @@ func TestType_PathQueryForString(t *testing.T) {
 		},
 		{
 			Path: []string{"one","two"},
-			Map:map[string]interface{}{
-				"one":map[string]interface{}{
-					"two":map[string]interface{}{
+			Map:map[string]any{
+				"one":map[string]any{
+					"two":map[string]any{
 						"three": "hello world!",
 					},
-					"TWO":map[string]interface{}{
-						"THREE":map[string]interface{}{
+					"TWO":map[string]any{
+						"THREE":map[string]any{
 							"FOUR":"All your base are belong to us",
 						},
 					},
@@ -185,13 +185,13 @@ func TestType_PathQueryForString(t *testing.T) {
 		},
 		{
 			Path: []string{"one","two","three"},
-			Map:map[string]interface{}{
-				"one":map[string]interface{}{
-					"two":map[string]interface{}{
+			Map:map[string]any{
+				"one":map[string]any{
+					"two":map[string]any{
 						"three": "hello world!",
 					},
-					"TWO":map[string]interface{}{
-						"THREE":map[string]interface{}{
+					"TWO":map[string]any{
+						"THREE":map[string]any{
 							"FOUR":"All your base are belong to us",
 						},
 					},
@@ -207,7 +207,7 @@ func TestType_PathQueryForString(t *testing.T) {
 
 	for testNumber, test := range tests {
 
-		expectedMap := mapstringinterface.Type(test.Map)
+		expectedMap := maps.Type(test.Map)
 
 		actualInterface, actualFound := expectedMap.PathQueryForString(test.Path...)
 
